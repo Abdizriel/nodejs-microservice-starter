@@ -1,13 +1,15 @@
 {
   "name": "microservice",
   "version": "1.0.0",
-  "description": "NodeJS RESTful microservice",
+  "description": "NodeJS RESTful API Microservice",
   "main": "dist/index.js",
   "scripts": {
     "start": "pm2 start dist/index.js -i 4 --name=\"microservice\" --watch",
     "dev": "nodemon server/index.js --exec babel-node --presets es2015,stage-0",
     "build": "babel server -d dist",
-    "test": "mocha --compilers js:babel-register --reporter spec server/api/**/*.spec.js"
+    "test": "mocha --compilers js:babel-register --reporter spec server/api/**/*.spec.js",
+    "coverage": "istanbul cover _mocha -- server/api/**/*.spec.js --compilers js:babel-register",
+    "coveralls": "istanbul cover _mocha -- server/api/**/*.spec.js --compilers js:babel-register --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "author": "Marcin Mrotek <kontakt@marcinmrotek.pl>",
   "license": "MIT",
@@ -17,6 +19,8 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.3.13",
     "chai": "^3.5.0",
+    "coveralls": "^2.11.9",
+    "istanbul": "^1.1.0-alpha.1",
     "mocha": "^2.3.4",
     "nodemon": "^1.8.1",
     "proxyquire": "^1.7.9",
