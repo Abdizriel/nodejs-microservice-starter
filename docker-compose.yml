@@ -4,7 +4,7 @@ microservice:
     links:
         - mongo:mongo
     ports:
-        - "9001:9000"
+        - "9000:9000"
     environment:
         - "NODE_ENV=production"
 
