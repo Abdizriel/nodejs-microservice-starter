@@ -1,8 +1,8 @@
 # NodeJS RESTful API Microservice
 This repository contains a full configuration that runs NodeJS RESTful API Microservice.
 
-[![Build Status](https://secure.travis-ci.org/Abdizriel/nodejs-microservice-starter.png?branch=master)](https://travis-ci.org/Abdizriel/nodejs-microservice-starter)
-[![Coverage Status](https://coveralls.io/repos/github/Abdizriel/nodejs-microservice-starter/badge.svg?branch=master)](https://coveralls.io/github/Abdizriel/nodejs-microservice-starter?branch=master)
+[![Build Status](https://secure.travis-ci.org/Abdizriel/nodejs-microservice.png?branch=master)](https://travis-ci.org/Abdizriel/nodejs-microservice)
+[![Coverage Status](https://coveralls.io/repos/github/Abdizriel/nodejs-microservice/badge.svg?branch=master)](https://coveralls.io/github/Abdizriel/nodejs-microservice?branch=master)
 [![Dependency Status](https://img.shields.io/david/Abdizriel/nodejs-microservice-starter.svg)](https://david-dm.org/Abdizriel/nodejs-microservice-starter)
 [![Dev-Dependency Status](https://img.shields.io/david/dev/Abdizriel/nodejs-microservice-starter.svg)](https://david-dm.org/Abdizriel/nodejs-microservice-starter#info=devDependencies)
 
