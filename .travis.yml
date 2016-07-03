@@ -4,7 +4,8 @@ node_js:
   - "6"
 
 env:
-  - NODE_ENV = "test"
+  global:
+    - NODE_ENV=test
 
 before_script:
   - npm install
