@@ -1,5 +1,15 @@
+/**
+ * @description MongoDB Schema
+ * @param Schema
+ */
 import { Schema } from 'mongoose';
 
+/**
+ * @description Service MongoDB Schema
+ * @param serviceSchema
+ * @private
+ * @const
+ */
 const _serviceSchema = {
   serviceData: {
     type: String,
@@ -12,4 +22,8 @@ const _serviceSchema = {
   }
 };
 
+/**
+ * @exports serviceSchema
+ * @default
+ */
 export default Schema(_serviceSchema);

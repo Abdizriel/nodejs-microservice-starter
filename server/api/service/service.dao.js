@@ -1,8 +1,33 @@
+/**
+ * @description MongoDB driver module
+ * @param mongoose
+ */
 import mongoose from 'mongoose';
+
+/**
+ * @description Promises/A+ module
+ * @param Promise
+ */
 import Promise from 'bluebird';
+
+/**
+ * @description Service Data Schema
+ * @param serviceSchema
+ */
 import serviceSchema from './service.model';
+
+/**
+ * @description JavaScript utility module
+ * @param _
+ */
 import _ from 'lodash';
 
+/**
+ * @function list
+ * @description Function that returns all services from MongoDB
+ * @static
+ * @returns {Promise} Result of documents search
+ */
 serviceSchema.statics.list = () => {
   return new Promise((resolve, reject) => {
     const _query = {};
@@ -14,6 +39,13 @@ serviceSchema.statics.list = () => {
   });
 };
 
+/**
+ * @function show
+ * @description Function that returns single service from MongoDB by provided id
+ * @param {String} id - Service document id search
+ * @static
+ * @returns {Promise} Result of document search
+ */
 serviceSchema.statics.show = id => {
   return new Promise((resolve, reject) => {
     if (!id) {
@@ -27,6 +59,13 @@ serviceSchema.statics.show = id => {
   });
 };
 
+/**
+ * @function create
+ * @description Function that create new service in MongoDB from provided object
+ * @param {Object} service - New service
+ * @static
+ * @returns {Promise} Result of document creation
+ */
 serviceSchema.statics.create = service => {
   return new Promise((resolve, reject) => {
     if (!_.isObject(service)) {
@@ -41,6 +80,14 @@ serviceSchema.statics.create = service => {
   });
 };
 
+/**
+ * @function update
+ * @description Function that update service in MongoDB by provided service id and updated object
+ * @param {String} id - Service id
+ * @param {Object} service - Updated service
+ * @static
+ * @returns {Promise} Result of document creation
+ */
 serviceSchema.statics.update = (id, service) => {
   return new Promise((resolve, reject) => {
     if (!_.isString(id)) {
@@ -58,6 +105,13 @@ serviceSchema.statics.update = (id, service) => {
   });
 };
 
+/**
+ * @function delete
+ * @description Function that delete service from MongoDB by provided id
+ * @param {String} id - Service document id to remove
+ * @static
+ * @returns {Promise} Result of document deletion
+ */
 serviceSchema.statics.delete = id => {
   return new Promise((resolve, reject) => {
     if (!_.isString(id)) {
@@ -71,6 +125,15 @@ serviceSchema.statics.delete = id => {
   });
 };
 
+/**
+ * @description Service Model
+ * @param Service
+ * @const
+ */
 const Service = mongoose.model('Service', serviceSchema);
 
+/**
+ * @exports Service
+ * @default
+ */
 export default Service;
