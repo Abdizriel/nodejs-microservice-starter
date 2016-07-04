@@ -6,7 +6,7 @@ module.exports = {
 
   // Server IP
   ip: process.env.IP ||
-      'localhost',
+      undefined,
 
   // Server port
   port: process.env.PORT ||
@@ -14,7 +14,7 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri:  process.env.MONGO_URI ||
+    uri:  process.env.MONGODB_URI ||
           'mongodb://mongo:27017/aggregation-insert'
   }
 
