@@ -6,7 +6,7 @@
   "scripts": {
     "start": "pm2 start dist/index.js -i 4 --name=\"microservice\" --watch",
     "dev": "nodemon server/index.js --exec babel-node --presets es2015,stage-0",
-    "build": "babel server -d dist",
+    "build": "babel server -d dist && cp package.json dist/package.json && cp Procfile dist/Procfile",
     "test": "mocha --compilers js:babel-register --reporter spec server/api/**/*.spec.js",
     "coverage": "istanbul cover _mocha -- server/api/**/*.spec.js --compilers js:babel-register",
     "coveralls": "istanbul cover _mocha -- server/api/**/*.spec.js --compilers js:babel-register --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
