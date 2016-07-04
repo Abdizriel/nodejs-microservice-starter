@@ -1,4 +1,4 @@
-# NodeJS RESTful API Microservice
+# NodeJS RESTful API Microservice Starter
 This repository contains a full configuration that runs NodeJS RESTful API Microservice Starter.
 
 [![Build Status](https://secure.travis-ci.org/Abdizriel/nodejs-microservice.png?branch=master)](https://travis-ci.org/Abdizriel/nodejs-microservice)
