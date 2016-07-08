@@ -21,7 +21,7 @@
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
     "istanbul": "^1.1.0-alpha.1",
-    "mocha": "^2.3.4",
+    "mocha": "^2.5.3",
     "nodemon": "^1.8.1",
     "proxyquire": "^1.7.9",
     "sinon": "^1.17.4",
