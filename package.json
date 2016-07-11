@@ -9,8 +9,8 @@
     "dev": "nodemon server/index.js --exec babel-node --presets es2015,stage-0",
     "build": "babel server -d dist && cp package.json dist/package.json && cp Procfile dist/Procfile && cp Dockerfile dist/Dockerfile",
     "test": "mocha --compilers js:babel-register --reporter spec server/api/**/*.spec.js",
-    "coverage": "istanbul cover _mocha -- server/api/**/*.spec.js --compilers js:babel-register",
-    "coveralls": "istanbul cover _mocha -- server/api/**/*.spec.js --compilers js:babel-register --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "coverage": "istanbul cover _mocha -x '**/config/**' -- server/api/**/*.spec.js --compilers js:babel-register",
+    "coveralls": "istanbul cover _mocha -x '**/config/**' -- server/api/**/*.spec.js --compilers js:babel-register --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "author": "Marcin Mrotek <kontakt@marcinmrotek.pl>",
   "license": "MIT",
