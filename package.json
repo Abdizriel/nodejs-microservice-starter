@@ -1,5 +1,5 @@
 {
-  "name": "microservice",
+  "name": "nodejs-microservice-starter",
   "version": "1.0.0",
   "description": "NodeJS RESTful API Microservice",
   "main": "dist/index.js",
