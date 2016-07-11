@@ -1,7 +1,7 @@
 # NodeJS RESTful API Microservice Starter
 This repository contains a full configuration that runs NodeJS RESTful API Microservice Starter.
 
-[![Build Status](https://secure.travis-ci.org/Abdizriel/nodejs-microservice.png?branch=master)](https://travis-ci.org/Abdizriel/nodejs-microservice)
+[![Build Status](https://secure.travis-ci.org/Abdizriel//nodejs-microservice-starter.png?branch=master)](https://travis-ci.org/Abdizriel//nodejs-microservice-starter)
 [![Coverage Status](https://coveralls.io/repos/github/Abdizriel/nodejs-microservice/badge.svg?branch=master)](https://coveralls.io/github/Abdizriel/nodejs-microservice?branch=master)
 [![Dependency Status](https://img.shields.io/david/Abdizriel/nodejs-microservice-starter.svg)](https://david-dm.org/Abdizriel/nodejs-microservice-starter)
 [![Dev-Dependency Status](https://img.shields.io/david/dev/Abdizriel/nodejs-microservice-starter.svg)](https://david-dm.org/Abdizriel/nodejs-microservice-starter#info=devDependencies)
@@ -62,7 +62,13 @@ npm run coverage
 
 There is available Docker container and Docker Composer if you would like to run many NodeJS Microservices.
 
-Use following command to build Docker containers:
+Build API Microservice by using following command:
+
+```sh
+npm run build
+```
+
+Then use following command to build Docker containers:
 
 ```sh
 docker-compose up -d --build
