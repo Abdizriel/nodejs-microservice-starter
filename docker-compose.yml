@@ -1,6 +1,6 @@
 # NodeJS RESTful API Microservice
 microservice:
-    build: ./
+    build: ./dist
     links:
         - mongo:mongo
     ports:
