@@ -1,4 +1,4 @@
-# NodeJS RESTful API Microservice Starter
+# NodeJS RESTful API Microservice Starter v1.1.0
 This repository contains a full configuration that runs NodeJS RESTful API Microservice Starter.
 
 [![Build Status](https://secure.travis-ci.org/Abdizriel/nodejs-microservice-starter.png?branch=master)](https://travis-ci.org/Abdizriel/nodejs-microservice-starter)
@@ -91,4 +91,4 @@ See `Dockerfile` and `docker-compose.yml` for more details.
 ## TODO
 
 * [#2](https://github.com/Abdizriel/nodejs-microservice-starter/issues/2) API Authentication oAuth2
-* [#3](https://github.com/Abdizriel/nodejs-microservice-starter/issues/3) Sequelize ORM
+* [#3](https://github.com/Abdizriel/nodejs-microservice-starter/issues/3) Waterline ORM
