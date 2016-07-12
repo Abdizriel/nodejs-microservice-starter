@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node index.js",
-    "pm2": "pm2 start dist/index.js -i 4 --name=\"microservice\" --watch",
+    "pm2": "pm2 start index.js -i 4 --name=\"microservice\" --watch",
     "dev": "nodemon server/index.js --exec babel-node --presets es2015,stage-0",
     "build": "babel server -d dist && cp package.json dist/package.json && cp Procfile dist/Procfile && cp Dockerfile dist/Dockerfile",
     "test": "mocha --compilers js:babel-register --reporter spec server/api/**/*.spec.js",
