@@ -6,7 +6,8 @@ microservice:
     ports:
         - "9000:9000"
     environment:
-        - "NODE_ENV=production"
+        NODE_ENV: production
+        MONGODB_URI: mongodb://mongo/service
 
 # MongoDB
 mongo:

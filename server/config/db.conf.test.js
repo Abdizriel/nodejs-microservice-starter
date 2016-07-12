@@ -1,5 +1,5 @@
 import Service from '../api/service/service.dao';
-import config from './env/index';
+import config from './index';
 import Promise from 'bluebird';
 
 exports.setupMongoose = mongoose => {
