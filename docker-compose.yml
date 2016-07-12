@@ -1,12 +1,41 @@
+# Reverse Proxy
+nginx:
+    build: ./nginx
+    links:
+        - microservice1:microservice1
+        - microservice2:microservice2
+        - microservice3:microservice3
+    ports:
+        - "80:80"
+
 # NodeJS RESTful API Microservice
-microservice:
+microservice1:
     build: ./dist
     links:
         - mongo:mongo
     ports:
-        - "9000:9000"
+        - "9001:9000"
     environment:
-        - "NODE_ENV=production"
+        NODE_ENV: production
+        MONGODB_URI: mongodb://mongo/service
+microservice2:
+    build: ./dist
+    links:
+        - mongo:mongo
+    ports:
+        - "9002:9000"
+    environment:
+        NODE_ENV: production
+        MONGODB_URI: mongodb://mongo/service
+microservice3:
+    build: ./dist
+    links:
+        - mongo:mongo
+    ports:
+        - "9003:9000"
+    environment:
+        NODE_ENV: production
+        MONGODB_URI: mongodb://mongo/service
 
 # MongoDB
 mongo:

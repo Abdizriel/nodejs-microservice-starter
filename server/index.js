@@ -14,7 +14,7 @@ import express from 'express';
  * @description Configuration object
  * @param config
  */
-import config from './config/env';
+import config from './config';
 
 /**
  * @description Database config class

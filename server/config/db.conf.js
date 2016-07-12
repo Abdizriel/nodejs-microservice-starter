@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import bluebird from 'bluebird';
-import config from './env/index';
+import config from './index';
 
 mongoose.Promise = bluebird;
 
