@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { expect } from 'chai';
 
 import ServiceDAO from './service.dao';
-import { setupMongoose, closeMongoose, createServices} from '../../config/db.conf.test.js';
+import { setupMongoose, closeMongoose, createServices} from '../../config/db.conf.test';
 
 
 describe('Service Data Access Object: ', () => {
