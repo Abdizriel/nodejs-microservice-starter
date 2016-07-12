@@ -6,6 +6,7 @@ node_js:
 env:
   global:
     - NODE_ENV=test
+    - MONGODB_URI=mongodb://localhost/service
 
 before_script:
   - npm install
