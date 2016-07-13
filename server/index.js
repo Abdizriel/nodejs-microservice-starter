@@ -11,10 +11,15 @@ import http from 'http';
 import express from 'express';
 
 /**
- * @description Configuration object
+ * @description Configure env variables
  * @param config
  */
-import config from './config';
+import dotenv from 'dotenv-safe'
+dotenv.load({
+  path: `${__dirname}/config/.env`,
+  sample: `${__dirname}/config/.env.example`,
+  allowEmptyValues: false
+});
 
 /**
  * @description Database config class
@@ -66,8 +71,8 @@ Routes.init(app, express.Router());
  * @description Start API Server
  */
 const startServer = () => {
-  server.listen(config.port, config.ip, () => {
-    console.log('Express server listening on %s:%s in %s mode', config.ip, config.port, config.env);
+  server.listen(process.env.PORT, process.env.IP, () => {
+    console.log('Express server listening on %s:%s in %s mode', process.env.IP, process.env.PORT, process.env.NODE_ENV);
   });
 };
 
