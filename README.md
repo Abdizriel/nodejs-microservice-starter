@@ -1,3 +1,5 @@
+![NodeJS RESTful API Microservice Logo](https://github.com/Abdizriel/nodejs-microservice-starter/blob/master/logo.jpg)
+
 # NodeJS RESTful API Microservice Starter v1.1.0
 This repository contains a full configuration that runs NodeJS RESTful API Microservice Starter.
 
