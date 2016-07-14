@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /**
  * @function respondWithResult
  * @description Function that returns response with data
@@ -18,12 +20,12 @@ function respondWithResult(res, statusCode) {
  * @description Function that updates entity with new data
  * @param {Object} updates - Updated data
  */
+
 function saveUpdates(updates) {
   return entity => {
-    return entity.updateAttributes(updates)
-      .then(updated => {
-        return updated;
-      });
+    const updated = _.merge(entity, updates);
+    return updated.save()
+      .then(updated => updated);
   };
 }
 
@@ -35,7 +37,7 @@ function saveUpdates(updates) {
 function removeEntity(res) {
   return entity => {
     if (entity) {
-      return entity.destroy()
+      return entity.remove()
         .then(() => {
           res.status(204).end();
         });

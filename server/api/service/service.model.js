@@ -46,7 +46,7 @@ const ServiceSchema = new Schema({
  */
 ServiceSchema
   .virtual('service')
-  .get(() => {
+  .get(function () {
     return {
       'id': this._id,
       'name': this.name
@@ -65,9 +65,9 @@ ServiceSchema
  */
 ServiceSchema
   .path('name')
-  .validate((name, respond) => {
+  .validate(function (name, respond) {
     const self = this;
-    return this.constructor.findOne({ name }).exec()
+    return self.constructor.findOne({ name }).exec()
       .then(name => {
         if (name) return respond(false);
         return respond(true);
@@ -81,7 +81,7 @@ ServiceSchema
  * @description Every update set new updatedAt date
  */
 ServiceSchema
-  .pre('update', () => {
+  .pre('update', function () {
     this.update({},{
       $set: {
         updatedAt: new Date()

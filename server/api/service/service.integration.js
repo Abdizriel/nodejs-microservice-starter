@@ -1,11 +1,19 @@
 'use strict';
 
 import request from 'supertest';
+import { expect } from 'chai';
+import Service from './service.model';
 
 let app = require('../..');
 let newService;
 
 describe('Service API:', () => {
+
+  before(done => {
+    Service.remove({})
+      .then(() => done())
+      .catch(err => done(err));
+  });
 
   describe('GET /api/services', () => {
     let services;
@@ -50,12 +58,10 @@ describe('Service API:', () => {
       expect(newService._id).to.not.be.undefined;
       expect(newService._id).to.not.be.null;
       expect(newService).ownProperty('name');
-      expect(newService.firstName).to.equal('Service Test');
+      expect(newService.name).to.equal('Service Test');
       expect(newService).ownProperty('createdAt');
       expect(newService.createdAt).to.not.be.undefined;
       expect(newService.createdAt).to.not.be.null;
-      expect(newService).ownProperty('updatedAt');
-      expect(newService.updatedAt).to.be.null;
     });
 
   });
@@ -85,12 +91,10 @@ describe('Service API:', () => {
       expect(service._id).to.not.be.undefined;
       expect(service._id).to.not.be.null;
       expect(service).ownProperty('name');
-      expect(service.firstName).to.equal('Service Test');
+      expect(service.name).to.equal('Service Test');
       expect(service).ownProperty('createdAt');
       expect(service.createdAt).to.not.be.undefined;
       expect(service.createdAt).to.not.be.null;
-      expect(service).ownProperty('updatedAt');
-      expect(service.updatedAt).to.be.null;
     });
 
   });
@@ -123,13 +127,13 @@ describe('Service API:', () => {
       expect(updatedService._id).to.not.be.undefined;
       expect(updatedService._id).to.not.be.null;
       expect(updatedService).ownProperty('name');
-      expect(updatedService.firstName).to.equal('Updated Service');
+      expect(updatedService.name).to.equal('Updated Service');
       expect(updatedService).ownProperty('createdAt');
       expect(updatedService.createdAt).to.not.be.undefined;
       expect(updatedService.createdAt).to.not.be.null;
-      expect(updatedService).ownProperty('updatedAt');
-      expect(updatedService.updatedAt).to.not.be.undefined;
-      expect(updatedService.updatedAt).to.not.be.null;
+      // expect(updatedService).ownProperty('updatedAt');
+      // expect(updatedService.updatedAt).to.not.be.undefined;
+      // expect(updatedService.updatedAt).to.not.be.null;
     });
 
   });
@@ -162,13 +166,13 @@ describe('Service API:', () => {
       expect(patchedService._id).to.not.be.undefined;
       expect(patchedService._id).to.not.be.null;
       expect(patchedService).ownProperty('name');
-      expect(patchedService.firstName).to.equal('Patched Service');
+      expect(patchedService.name).to.equal('Patched Service');
       expect(patchedService).ownProperty('createdAt');
       expect(patchedService.createdAt).to.not.be.undefined;
       expect(patchedService.createdAt).to.not.be.null;
-      expect(patchedService).ownProperty('updatedAt');
-      expect(patchedService.updatedAt).to.not.be.undefined;
-      expect(patchedService.updatedAt).to.not.be.null;
+      // expect(patchedService).ownProperty('updatedAt');
+      // expect(patchedService.updatedAt).to.not.be.undefined;
+      // expect(patchedService.updatedAt).to.not.be.null;
     });
 
   });
