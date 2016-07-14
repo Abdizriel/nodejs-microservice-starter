@@ -9,11 +9,15 @@ env:
     - MONGODB_URI=mongodb://localhost/service
 
 before_script:
-  - npm install
+  - "cd server"
+  - "npm install"
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 
 script:
   - npm run coveralls
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 services: mongodb

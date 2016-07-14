@@ -1,10 +1,9 @@
 import Service from '../api/service/service.dao';
-import config from './index';
 import Promise from 'bluebird';
 
 exports.setupMongoose = mongoose => {
   mongoose.models = {};
-  mongoose.connect(config.mongo.uri);
+  mongoose.connect(process.env.MONGODB_URI);
   mongoose.connection.on('error', () => {});
 };
 

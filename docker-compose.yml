@@ -10,7 +10,7 @@ nginx:
 
 # NodeJS RESTful API Microservice
 microservice1:
-    build: ./dist
+    build: ./server/dist
     links:
         - mongo:mongo
     ports:
@@ -18,8 +18,10 @@ microservice1:
     environment:
         NODE_ENV: production
         MONGODB_URI: mongodb://mongo/service
+        IP: 0.0.0.0
+        PORT: 9000
 microservice2:
-    build: ./dist
+    build: ./server/dist
     links:
         - mongo:mongo
     ports:
@@ -27,8 +29,10 @@ microservice2:
     environment:
         NODE_ENV: production
         MONGODB_URI: mongodb://mongo/service
+        IP: 0.0.0.0
+        PORT: 9000
 microservice3:
-    build: ./dist
+    build: ./server/dist
     links:
         - mongo:mongo
     ports:
@@ -36,6 +40,8 @@ microservice3:
     environment:
         NODE_ENV: production
         MONGODB_URI: mongodb://mongo/service
+        IP: 0.0.0.0
+        PORT: 9000
 
 # MongoDB
 mongo:

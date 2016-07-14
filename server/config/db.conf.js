@@ -1,12 +1,11 @@
 import mongoose from 'mongoose';
 import bluebird from 'bluebird';
-import config from './index';
 
 mongoose.Promise = bluebird;
 
 export default class DBConfig {
   static init() {
-    mongoose.connect(config.mongo.uri);
+    mongoose.connect(process.env.MONGODB_URI);
     mongoose.connection.on('error', console.error.bind(console, 'An error occurred with the DB connection: '));
   }
 };

@@ -6,11 +6,12 @@
   "scripts": {
     "start": "node index.js",
     "pm2": "pm2 start index.js -i 4 --name=\"microservice\" --no-daemon",
-    "dev": "nodemon server/index.js --exec babel-node --presets es2015,stage-0",
-    "build": "babel server -d dist && cp package.json dist/package.json && cp Procfile dist/Procfile && cp Dockerfile dist/Dockerfile",
-    "test": "mocha --compilers js:babel-register --reporter spec server/api/**/*.spec.js",
-    "coverage": "istanbul cover _mocha -x '**/config/**' -- server/api/**/*.spec.js --compilers js:babel-register",
-    "coveralls": "istanbul cover _mocha -x '**/config/**' -- server/api/**/*.spec.js --compilers js:babel-register --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "dev": "nodemon index.js --exec babel-node --presets es2015,stage-0",
+    "dist": "nodemon dist/index.js --exec babel-node --presets es2015,stage-0",
+    "build": "babel api -d dist/api --ignore spec.js && babel config -d dist/config && babel index.js -d dist && cp config/.env.example dist/config/.env.example && cp package.json dist/package.json && cp Procfile dist/Procfile && cp Dockerfile dist/Dockerfile",
+    "test": "mocha --compilers js:babel-register --reporter spec api/**/*.spec.js",
+    "coverage": "istanbul cover _mocha -x '**/config/**' -- api/**/*.spec.js --compilers js:babel-register",
+    "coveralls": "istanbul cover _mocha -x '**/config/**' -- api/**/*.spec.js --compilers js:babel-register --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "author": "Marcin Mrotek <kontakt@marcinmrotek.pl>",
   "license": "MIT",
@@ -31,6 +32,7 @@
   "dependencies": {
     "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
+    "dotenv-safe": "^2.3.1",
     "express": "^4.14.0",
     "express-content-length-validator": "^1.0.0",
     "helmet": "^2.1.1",
