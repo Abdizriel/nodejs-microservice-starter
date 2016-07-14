@@ -1,40 +1,45 @@
 'use strict';
 
-import proxyquire from 'proxyquire';
+import { noPreserveCache } from 'proxyquire';
 import sinon from 'sinon';
 import { expect } from 'chai';
 
-const indexCtrlStub = {
-  list: 'indexCtrl.list',
-  show: 'indexCtrl.show',
-  create: 'indexCtrl.create',
-  update: 'indexCtrl.update',
-  delete: 'indexCtrl.delete'
+const serviceCtrlStub = {
+  index: 'serviceCtrl.index',
+  show: 'serviceCtrl.show',
+  create: 'serviceCtrl.create',
+  update: 'serviceCtrl.update',
+  destroy: 'serviceCtrl.destroy'
 };
 
 const routerStub = {
   get: sinon.spy(),
   put: sinon.spy(),
+  patch: sinon.spy(),
   post: sinon.spy(),
   delete: sinon.spy()
 };
 
-const serviceIndex = proxyquire('./index', {
+const serviceIndex = noPreserveCache('./index', {
   'express': {
     Router() {
       return routerStub;
     }
   },
-  './service.controller': indexCtrlStub
+  './service.controller': serviceCtrlStub
 });
 
-describe('Index API Router:', () => {
+describe('Service API Router:', () => {
+
+  // it('should return an express router instance', function() {
+  //   expect(serviceIndex).to.equal(routerStub);
+  // });
 
   describe('GET /api/services', () => {
 
-    it('should verify route to service.controller.list', () => {
+    it('should verify route to service.controller.index', () => {
       expect(routerStub.get
-        .withArgs('/', 'indexCtrl.list')
+        .withArgs('/', 'serviceCtrl.index')
       ).to.have.been.calledOnce;
     });
 
@@ -44,7 +49,7 @@ describe('Index API Router:', () => {
 
     it('should route to service.controller.create', () => {
     expect(routerStub.post
-      .withArgs('/', 'indexCtrl.create')
+      .withArgs('/', 'serviceCtrl.create')
     ).to.have.been.calledOnce;
   });
 
@@ -52,16 +57,10 @@ describe('Index API Router:', () => {
 
   describe('DELETE /api/services/:id', () => {
 
-    it('should verify route to service.controller.delete', () => {
+    it('should verify route to service.controller.destroy', () => {
       expect(routerStub.delete
-        .withArgs('/:id', 'indexCtrl.delete')
+        .withArgs('/:id', 'serviceCtrl.destroy')
       ).to.have.been.calledOnce;
-    });
-
-    it('should verify route to service.controller.delete without argument', () => {
-      expect(routerStub.delete
-        .withArgs('/', 'indexCtrl.delete')
-      ).to.have.been.not.calledOnce;
     });
 
   });
@@ -70,14 +69,18 @@ describe('Index API Router:', () => {
 
     it('should verify route to service.controller.update', () => {
       expect(routerStub.put
-        .withArgs('/:id', 'indexCtrl.update')
+        .withArgs('/:id', 'serviceCtrl.update')
       ).to.have.been.calledOnce;
     });
 
-    it('should verify route to service.controller.update without argument', () => {
-      expect(routerStub.put
-        .withArgs('/', 'indexCtrl.update')
-      ).to.have.been.not.calledOnce;
+  });
+
+  describe('PATCH /api/services/:id', () => {
+
+    it('should verify route to service.controller.update', () => {
+      expect(routerStub.patch
+        .withArgs('/:id', 'serviceCtrl.update')
+      ).to.have.been.calledOnce;
     });
 
   });
@@ -86,14 +89,8 @@ describe('Index API Router:', () => {
 
     it('should verify route to service.controller.show', () => {
       expect(routerStub.get
-        .withArgs('/:id', 'indexCtrl.show')
+        .withArgs('/:id', 'serviceCtrl.show')
       ).to.have.been.calledOnce;
-    });
-
-    it('should verify route to service.controller.show without argument', () => {
-      expect(routerStub.get
-        .withArgs('/', 'indexCtrl.show')
-      ).to.have.been.not.calledOnce;
     });
 
   });

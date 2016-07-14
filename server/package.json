@@ -9,7 +9,7 @@
     "dev": "nodemon index.js --exec babel-node --presets es2015,stage-0",
     "dist": "nodemon dist/index.js --exec babel-node --presets es2015,stage-0",
     "build": "babel api -d dist/api --ignore spec.js && babel config -d dist/config && babel index.js -d dist && cp config/.env.example dist/config/.env.example && cp package.json dist/package.json && cp Procfile dist/Procfile && cp Dockerfile dist/Dockerfile",
-    "test": "mocha --compilers js:babel-register --reporter spec api/**/*.spec.js",
+    "test": "mocha --compilers js:babel-register --reporter spec api/**/*.spec.js && mocha --compilers js:babel-register --reporter spec api/**/*.integration.js",
     "coverage": "istanbul cover _mocha -x '**/config/**' -- api/**/*.spec.js --compilers js:babel-register",
     "coveralls": "istanbul cover _mocha -x '**/config/**' -- api/**/*.spec.js --compilers js:babel-register --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
