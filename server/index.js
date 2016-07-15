@@ -28,16 +28,22 @@ dotenv.load({
 import DBConfig from './config/db.conf';
 
 /**
- * @description Routes config class
- * @param Routes
+ * @description Routes config function
+ * @param initRoutes
  */
 import { initRoutes } from './config/routes.conf';
 
 /**
- * @description IApplication config class
+ * @description Application config class
  * @param Routes
  */
 import ApplicationConfig from './config/app.conf';
+
+/**
+ * @description Init SocketIO
+ * @param {Function} initSocket
+ */
+import { initSocket } from './config/socket.conf';
 
 /**
  * @description Create application with Express Framework
@@ -65,6 +71,19 @@ ApplicationConfig.init(app);
  * @description Configure Routes
  */
 initRoutes(app);
+
+/**
+ * @description Configure Routes
+ */
+const socketio = require('socket.io')(server, {
+  serveClient: process.env.NODE_ENV !== 'production',
+  path: '/socket.io-client'
+});
+
+/**
+ * @description Configure Routes
+ */
+initSocket(socketio);
 
 /**
  * @function startServer
