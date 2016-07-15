@@ -31,9 +31,9 @@ const serviceIndex = noPreserveCache('./index', {
 
 describe('Service API Router:', () => {
 
-  // it('should return an express router instance', function() {
-  //   expect(serviceIndex).to.equal(routerStub);
-  // });
+  it('should return an express router instance', function() {
+    expect(serviceIndex).to.equal(routerStub);
+  });
 
   describe('GET /api/services', () => {
 
