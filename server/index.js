@@ -1,107 +1,11 @@
-/**
- * @description HTTP server module
- * @param http
- */
-import http from 'http';
+'use strict';
 
-/**
- * @description Express Framework module
- * @param express
- */
-import express from 'express';
+// Set default node environment to development
+var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-/**
- * @description Configure env variables
- * @param config
- */
-import dotenv from 'dotenv-safe'
-dotenv.load({
-  path: `${__dirname}/config/.env`,
-  sample: `${__dirname}/config/.env.example`,
-  allowEmptyValues: false
-});
-
-/**
- * @description Database config class
- * @param DBConfig
- */
-import DBConfig from './config/db.conf';
-
-/**
- * @description Routes config function
- * @param initRoutes
- */
-import { initRoutes } from './config/routes.conf';
-
-/**
- * @description Application config class
- * @param Routes
- */
-import ApplicationConfig from './config/app.conf';
-
-/**
- * @description Init SocketIO
- * @param {Function} initSocket
- */
-import { initSocket } from './config/socket.conf';
-
-/**
- * @description Create application with Express Framework
- * @param app
- */
-const app = express();
-
-/**
- * @description Create application server
- * @param server
- */
-const server = http.createServer(app);
-
-/**
- * @description Configure Database
- */
-DBConfig.init();
-
-/**
- * @description Configure Application
- */
-ApplicationConfig.init(app);
-
-/**
- * @description Configure Routes
- */
-initRoutes(app);
-
-/**
- * @description Configure Routes
- */
-const socketio = require('socket.io')(server, {
-  serveClient: process.env.NODE_ENV !== 'production',
-  path: '/socket.io-client'
-});
-
-/**
- * @description Configure Routes
- */
-initSocket(socketio);
-
-/**
- * @function startServer
- * @description Start API Server
- */
-const startServer = () => {
-  server.listen(process.env.PORT, process.env.IP, () => {
-    console.log('Express server listening on %s:%s in %s mode', process.env.IP, process.env.PORT, process.env.NODE_ENV);
-  });
-};
-
-/**
- * @description Starting API Server after everythin is set up
- */
-setImmediate(startServer);
-
-/**
- * @description Application object
- * @module app
- */
-module.exports = app;
+if (env === 'development' || env === 'test') {
+  // Register the Babel require hook
+  require('babel-register');
+}
+// Export the application
+exports = module.exports = require('./app');
