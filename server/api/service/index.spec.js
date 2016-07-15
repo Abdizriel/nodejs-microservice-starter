@@ -1,6 +1,6 @@
 'use strict';
 
-const proxyquire = require('proxyquire').noPreserveCache();
+let proxyquire = require('proxyquire').noPreserveCache();
 
 const serviceCtrlStub = {
   index: 'serviceCtrl.index',
