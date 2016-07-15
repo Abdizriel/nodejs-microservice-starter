@@ -25,19 +25,19 @@ dotenv.load({
  * @description Database config class
  * @param DBConfig
  */
-import DBConfig from './config/db.conf.js';
+import DBConfig from './config/db.conf';
 
 /**
  * @description Routes config class
  * @param Routes
  */
-import Routes from './config/routes.conf.js';
+import { initRoutes } from './config/routes.conf';
 
 /**
  * @description IApplication config class
  * @param Routes
  */
-import ApplicationConfig from './config/app.conf.js';
+import ApplicationConfig from './config/app.conf';
 
 /**
  * @description Create application with Express Framework
@@ -64,7 +64,7 @@ ApplicationConfig.init(app);
 /**
  * @description Configure Routes
  */
-Routes.init(app, express.Router());
+initRoutes(app);
 
 /**
  * @function startServer
