@@ -12,7 +12,6 @@ import { EventEmitter } from 'events';
  */
 import Service from './service.model';
 
-
 /**
  * @description Service Events Emitter
  * @param ServiceEvents
@@ -36,7 +35,7 @@ const events = {
  */
 for (const e in events) {
   const event = events[e];
-  Service.hook(e, emitEvent(event));
+  Service.schema.post(e, emitEvent(event));
 }
 
 /**
