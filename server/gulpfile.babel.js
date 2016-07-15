@@ -22,7 +22,8 @@ const serverPaths = {
   json: '**/*.json',
   test: {
     integration: 'api/**/*.integration.js',
-    unit: 'api/**/*.spec.js'
+    unit: 'api/**/*.spec.js',
+    coverage: 'api/**/*.js'
   }
 };
 
@@ -236,7 +237,7 @@ gulp.task('copy:server', () => {
 });
 
 gulp.task('coverage:pre', () => {
-  return gulp.src(serverPaths.scripts)
+  return gulp.src(serverPaths.test.coverage)
     .pipe(plugins.istanbul({
       instrumenter: Instrumenter,
       includeUntested: true
