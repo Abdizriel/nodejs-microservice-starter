@@ -200,6 +200,7 @@ gulp.task('test:server', cb => {
     'mocha:unit',
     'mocha:integration',
     'mocha:coverage',
+    'mocha:coveralls',
     cb
   );
 });
@@ -255,7 +256,7 @@ gulp.task('coverage:integration', () => {
     .pipe(istanbul());
 });
 
-gulp.task('coveralls', () => {
+gulp.task('mocha:coveralls', () => {
   return gulp.src('coverage/**/lcov.info')
     .pipe(plugins.coveralls());
 });
@@ -266,14 +267,6 @@ gulp.task('mocha:coverage', cb => {
     'env:test',
     'coverage:unit',
     'coverage:integration',
-    cb
-  );
-});
-
-gulp.task('mocha:coveralls', cb => {
-  runSequence(
-    'mocha:coverage',
-    'coveralls',
     cb
   );
 });
