@@ -17,7 +17,7 @@ import express from 'express';
 import dotenv from 'dotenv-safe'
 dotenv.load({
   path: `${__dirname}/config/.env`,
-  sample: `${__dirname}/config/.env.example`,
+  sample: `${__dirname}/.env.example`,
   allowEmptyValues: false
 });
 

@@ -5,19 +5,24 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import lazypipe from 'lazypipe';
 import nodemon from 'nodemon';
 import runSequence from 'run-sequence';
-import {Instrumenter} from 'isparta';
+import { Instrumenter } from 'isparta';
 
 let plugins = gulpLoadPlugins();
 
 const serverPaths = {
   scripts: [
     '**/!(*.spec|*.integration).js',
+    '!mocha.conf.js',
+    '!gulpfile.babel.js',
+    '!node_modules/**/*',
+    '!dist/**/*.js',
+    '!coverage/**/*',
     '!config/local.env.sample.js'
   ],
   json: '**/*.json',
   test: {
-    integration: '**/*.integration.js',
-    unit: '**/*.spec.js'
+    integration: 'api/**/*.integration.js',
+    unit: 'api/**/*.spec.js'
   }
 };
 
@@ -86,12 +91,13 @@ let istanbul = lazypipe()
 
 gulp.task('env:test', () => {
   plugins.env({
-    vars: {NODE_ENV: 'test'}
+    vars: { NODE_ENV: 'test' }
   });
 });
+
 gulp.task('env:prod', () => {
   plugins.env({
-    vars: {NODE_ENV: 'production'}
+    vars: { NODE_ENV: 'production' }
   });
 });
 
@@ -122,7 +128,6 @@ gulp.task('jscs', () => {
 });
 
 gulp.task('start:server', () => {
-  console.log('test');
   process.env.NODE_ENV = process.env.NODE_ENV || 'development';
   nodemon(`-w index.js index.js`)
     .on('log', onServerLog);
@@ -159,7 +164,7 @@ gulp.task('watch', () => {
 
 gulp.task('serve', cb => {
   runSequence(
-    // 'lint:scripts:server',
+    'lint:scripts:server',
     'start:server',
     'watch',
     cb
@@ -168,6 +173,7 @@ gulp.task('serve', cb => {
 
 gulp.task('serve:dist', cb => {
   runSequence(
+    'clean:dist',
     'build',
     'start:server:prod',
     cb
@@ -176,7 +182,7 @@ gulp.task('serve:dist', cb => {
 
 gulp.task('serve:debug', cb => {
   runSequence(
-    // 'lint:scripts:server',
+    'lint:scripts:server',
     'start:inspector',
     'start:server:debug',
     'watch',
@@ -210,6 +216,7 @@ gulp.task('mocha:integration', () => {
 
 gulp.task('build', cb => {
   runSequence(
+    'clean:dist',
     'transpile:server',
     'copy:server',
     cb
@@ -218,12 +225,11 @@ gulp.task('build', cb => {
 
 gulp.task('clean:dist', () => del([`${distPath}/!(.git*|.openshift|Procfile)**`], {dot: true}));
 
-gulp.task('clean:tmp', () => del(['.tmp/**/*'], {dot: true}));
-
 gulp.task('copy:server', () => {
   return gulp.src([
     'package.json',
-    'Dockerfile'
+    'Dockerfile',
+    '.env.example'
   ], {cwdbase: true})
     .pipe(gulp.dest(distPath));
 });
@@ -249,12 +255,25 @@ gulp.task('coverage:integration', () => {
     .pipe(istanbul());
 });
 
+gulp.task('coveralls', () => {
+  return gulp.src('coverage/**/lcov.info')
+    .pipe(plugins.coveralls());
+});
+
 gulp.task('mocha:coverage', cb => {
   runSequence(
     'coverage:pre',
     'env:test',
     'coverage:unit',
     'coverage:integration',
+    cb
+  );
+});
+
+gulp.task('mocha:coveralls', cb => {
+  runSequence(
+    'mocha:coverage',
+    'coveralls',
     cb
   );
 });

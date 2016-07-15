@@ -11,4 +11,4 @@ export default class DBConfig {
       process.exit(-1);
     });
   }
-};
+}

@@ -1,8 +1,6 @@
 'use strict';
 
-import { noPreserveCache } from 'proxyquire';
-import sinon from 'sinon';
-import { expect } from 'chai';
+const proxyquire = require('proxyquire').noPreserveCache();
 
 const serviceCtrlStub = {
   index: 'serviceCtrl.index',
@@ -20,24 +18,21 @@ const routerStub = {
   delete: sinon.spy()
 };
 
-const serviceIndex = noPreserveCache('./index', {
+// require the index with our stubbed out modules
+const serviceIndex = proxyquire('./index.js', {
   'express': {
-    Router() {
+    Router: function() {
       return routerStub;
     }
   },
   './service.controller': serviceCtrlStub
 });
 
-describe('Service API Router:', () => {
+describe('Service API Router:', function() {
 
-  it('should return an express router instance', function() {
-    expect(serviceIndex).to.equal(routerStub);
-  });
+  describe('GET /api/services', function() {
 
-  describe('GET /api/services', () => {
-
-    it('should verify route to service.controller.index', () => {
+    it('should route to service.controller.index', function() {
       expect(routerStub.get
         .withArgs('/', 'serviceCtrl.index')
       ).to.have.been.calledOnce;
@@ -45,29 +40,29 @@ describe('Service API Router:', () => {
 
   });
 
-  describe('POST /api/services', () => {
+  describe('GET /api/services/:id', function() {
 
-    it('should route to service.controller.create', () => {
-    expect(routerStub.post
-      .withArgs('/', 'serviceCtrl.create')
-    ).to.have.been.calledOnce;
-  });
-
-  });
-
-  describe('DELETE /api/services/:id', () => {
-
-    it('should verify route to service.controller.destroy', () => {
-      expect(routerStub.delete
-        .withArgs('/:id', 'serviceCtrl.destroy')
+    it('should route to service.controller.show', function() {
+      expect(routerStub.get
+        .withArgs('/:id', 'serviceCtrl.show')
       ).to.have.been.calledOnce;
     });
 
   });
 
-  describe('PUT /api/services/:id', () => {
+  describe('POST /api/services', function() {
 
-    it('should verify route to service.controller.update', () => {
+    it('should route to service.controller.create', function() {
+      expect(routerStub.post
+        .withArgs('/', 'serviceCtrl.create')
+      ).to.have.been.calledOnce;
+    });
+
+  });
+
+  describe('PUT /api/services/:id', function() {
+
+    it('should route to service.controller.update', function() {
       expect(routerStub.put
         .withArgs('/:id', 'serviceCtrl.update')
       ).to.have.been.calledOnce;
@@ -75,9 +70,9 @@ describe('Service API Router:', () => {
 
   });
 
-  describe('PATCH /api/services/:id', () => {
+  describe('PATCH /api/services/:id', function() {
 
-    it('should verify route to service.controller.update', () => {
+    it('should route to service.controller.update', function() {
       expect(routerStub.patch
         .withArgs('/:id', 'serviceCtrl.update')
       ).to.have.been.calledOnce;
@@ -85,11 +80,11 @@ describe('Service API Router:', () => {
 
   });
 
-  describe('GET /api/services/:id', () => {
+  describe('DELETE /api/services/:id', function() {
 
-    it('should verify route to service.controller.show', () => {
-      expect(routerStub.get
-        .withArgs('/:id', 'serviceCtrl.show')
+    it('should route to service.controller.destroy', function() {
+      expect(routerStub.delete
+        .withArgs('/:id', 'serviceCtrl.destroy')
       ).to.have.been.calledOnce;
     });
 
