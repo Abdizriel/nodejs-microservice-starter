@@ -23,7 +23,11 @@ const serverPaths = {
   test: {
     integration: 'api/**/*.integration.js',
     unit: 'api/**/*.spec.js',
-    coverage: 'api/**/*.js'
+    coverage: [
+      'api/**/*.js',
+      '!api/**/*.events.js',
+      '!api/**/*.socket.js'
+    ]
   }
 };
 

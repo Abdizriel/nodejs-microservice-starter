@@ -12,7 +12,6 @@ describe('Service API:', () => {
   before(done => {
     Service.remove({})
       .then(() => done())
-      .catch(err => done(err));
   });
 
   describe('GET /api/services', () => {
@@ -106,6 +105,8 @@ describe('Service API:', () => {
       request(app)
         .put('/api/services/' + newService._id)
         .send({
+
+          _id: newService._id,
           name: 'Updated Service'
         })
         .expect(200)
@@ -145,6 +146,7 @@ describe('Service API:', () => {
       request(app)
         .put('/api/services/' + newService._id)
         .send({
+          _id: newService._id,
           name: 'Patched Service'
         })
         .expect(200)
