@@ -72,16 +72,13 @@ ServiceSchema
         if (name) return respond(false);
         return respond(true);
       })
-      .catch(err => {
-        throw err;
-      });
   }, 'The specified name is already in use.');
 
 /**
  * @description Every update set new updatedAt date
  */
 ServiceSchema
-  .pre('update', function () {
+  .post('update', function () {
     this.update({},{
       $set: {
         updatedAt: new Date()

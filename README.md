@@ -89,9 +89,3 @@ See `Dockerfile` and `docker-compose.yml` for more details.
 * Run following command `heroku create`
 * Run following command `heroku addons:create mongolab` to add MongoDB to your application.
 * Run following command `git push heroku master` to push your application to Heroku.
-
-## TODO
-
-* [#2](https://github.com/Abdizriel/nodejs-microservice-starter/issues/2) API Authentication oAuth2
-* [#3](https://github.com/Abdizriel/nodejs-microservice-starter/issues/3) Waterline ORM
-* [#5](https://github.com/Abdizriel/nodejs-microservice-starter/issues/5) 100% Test Coverage
