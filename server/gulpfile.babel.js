@@ -229,7 +229,7 @@ gulp.task('build', cb => {
   );
 });
 
-gulp.task('clean:dist', () => del([`${distPath}/!(.git*|.openshift|Procfile)**`], {dot: true}));
+gulp.task('clean:dist', () => del([`${distPath}/!(.git*)**`], {dot: true}));
 
 gulp.task('copy:server', () => {
   return gulp.src([
