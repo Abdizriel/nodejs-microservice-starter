@@ -77,15 +77,3 @@ docker-compose up -d --build
 ```
 
 See `Dockerfile` and `docker-compose.yml` for more details.
-
-## Deployment
-
-### Heroku
-
-* Build Microservice by using following command `npm run build`
-* Go to builded directory *dist*
-* Download and install [Heroku Toolbelt](https://toolbelt.heroku.com/ "Heroku Toolbelt")
-* Log in to Heroku by using following command `heroku login`
-* Run following command `heroku create`
-* Run following command `heroku addons:create mongolab` to add MongoDB to your application.
-* Run following command `git push heroku master` to push your application to Heroku.
