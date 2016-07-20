@@ -1,6 +1,6 @@
 ![NodeJS RESTful API Microservice Logo](https://github.com/Abdizriel/nodejs-microservice-starter/blob/master/logo.jpg)
 
-# NodeJS RESTful API Microservice Starter v1.1.0
+# NodeJS RESTful API Microservice Starter v1.2.0
 This repository contains a full configuration that runs NodeJS RESTful API Microservice Starter.
 
 [![Build Status](https://secure.travis-ci.org/Abdizriel/nodejs-microservice-starter.png?branch=master)](https://travis-ci.org/Abdizriel/nodejs-microservice-starter)
@@ -77,21 +77,3 @@ docker-compose up -d --build
 ```
 
 See `Dockerfile` and `docker-compose.yml` for more details.
-
-## Deployment
-
-### Heroku
-
-* Build Microservice by using following command `npm run build`
-* Go to builded directory *dist*
-* Download and install [Heroku Toolbelt](https://toolbelt.heroku.com/ "Heroku Toolbelt")
-* Log in to Heroku by using following command `heroku login`
-* Run following command `heroku create`
-* Run following command `heroku addons:create mongolab` to add MongoDB to your application.
-* Run following command `git push heroku master` to push your application to Heroku.
-
-## TODO
-
-* [#2](https://github.com/Abdizriel/nodejs-microservice-starter/issues/2) API Authentication oAuth2
-* [#3](https://github.com/Abdizriel/nodejs-microservice-starter/issues/3) Waterline ORM
-* [#5](https://github.com/Abdizriel/nodejs-microservice-starter/issues/5) 100% Test Coverage

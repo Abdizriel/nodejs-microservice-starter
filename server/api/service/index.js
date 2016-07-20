@@ -1,34 +1,29 @@
+'use strict';
+
+/**
+ * @description Express Framework Router
+ * @param Router
+ */
+import { Router } from 'express';
+
 /**
  * @description Service route Controller
  * @param ServiceController
  */
-import ServiceController from './service.controller';
+import * as ServiceController from './service.controller';
+
+let router = new Router();
+
+router.get('/', ServiceController.index);
+router.get('/:id', ServiceController.show);
+router.post('/', ServiceController.create);
+router.put('/:id', ServiceController.update);
+router.patch('/:id', ServiceController.update);
+router.delete('/:id', ServiceController.destroy);
 
 /**
- * @class ServiceRoutes
- * @classdesc Class that represents Service routes
- * @exports ServiceRoutes
+ * @description Configured router for Service Routes
+ * @exports router
  * @default
  */
-export default class ServiceRoutes {
-
-  /**
-   * @function init
-   * @description Init Service routes for Express router
-   * @param {Router} router - Express Framework Router
-   * @static
-   */
-  static init(router) {
-
-    // /api/services routes configs
-    router.route('/services')
-      .get(ServiceController.list)
-      .post(ServiceController.create);
-
-    // /api/services/:id routes configs
-    router.route('/services/:id')
-      .get(ServiceController.show)
-      .put(ServiceController.update)
-      .delete(ServiceController.delete);
-  }
-}
+export default router;
