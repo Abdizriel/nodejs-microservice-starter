@@ -1,6 +1,6 @@
 ![NodeJS RESTful API Microservice Logo](https://github.com/Abdizriel/nodejs-microservice-starter/blob/master/logo.jpg)
 
-# NodeJS RESTful API Microservice Starter v1.1.0
+# NodeJS RESTful API Microservice Starter v1.2.0
 This repository contains a full configuration that runs NodeJS RESTful API Microservice Starter.
 
 [![Build Status](https://secure.travis-ci.org/Abdizriel/nodejs-microservice-starter.png?branch=master)](https://travis-ci.org/Abdizriel/nodejs-microservice-starter)
